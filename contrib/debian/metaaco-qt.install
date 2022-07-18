@@ -1,0 +1,6 @@
+usr/local/bin/metaaco-qt usr/bin
+share/pixmaps/metaaco32.xpm usr/share/pixmaps
+share/pixmaps/metaaco16.xpm usr/share/pixmaps
+share/pixmaps/metaaco128.png usr/share/pixmaps
+debian/metaaco-qt.desktop usr/share/applications
+debian/metaaco-qt.protocol usr/share/kde4/services/

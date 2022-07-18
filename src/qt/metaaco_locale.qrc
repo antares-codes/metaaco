@@ -1,0 +1,37 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/metaaco_bg.qm</file>
+        <file alias="ca">locale/metaaco_ca.qm</file>
+        <file alias="cs">locale/metaaco_cs.qm</file>
+        <file alias="da">locale/metaaco_da.qm</file>
+        <file alias="de">locale/metaaco_de.qm</file>
+        <file alias="en">locale/metaaco_en.qm</file>
+        <file alias="en_GB">locale/metaaco_en_GB.qm</file>
+        <file alias="en_US">locale/metaaco_en_US.qm</file>
+        <file alias="eo">locale/metaaco_eo.qm</file>
+        <file alias="es">locale/metaaco_es.qm</file>
+        <file alias="es_ES">locale/metaaco_es_ES.qm</file>
+        <file alias="fi">locale/metaaco_fi.qm</file>
+        <file alias="fr_FR">locale/metaaco_fr_FR.qm</file>
+        <file alias="hi_IN">locale/metaaco_hi_IN.qm</file>
+        <file alias="hr">locale/metaaco_hr.qm</file>
+        <file alias="hr_HR">locale/metaaco_hr_HR.qm</file>
+        <file alias="it">locale/metaaco_it.qm</file>
+        <file alias="ja">locale/metaaco_ja.qm</file>
+        <file alias="ko_KR">locale/metaaco_ko_KR.qm</file>
+        <file alias="lt_LT">locale/metaaco_lt_LT.qm</file>
+        <file alias="nl">locale/metaaco_nl.qm</file>
+        <file alias="pl">locale/metaaco_pl.qm</file>
+        <file alias="pt">locale/metaaco_pt.qm</file>
+        <file alias="pt_BR">locale/metaaco_pt_BR.qm</file>
+        <file alias="ro_RO">locale/metaaco_ro_RO.qm</file>
+        <file alias="ru">locale/metaaco_ru.qm</file>
+        <file alias="sk">locale/metaaco_sk.qm</file>
+        <file alias="sv">locale/metaaco_sv.qm</file>
+        <file alias="tr">locale/metaaco_tr.qm</file>
+        <file alias="uk">locale/metaaco_uk.qm</file>
+        <file alias="vi">locale/metaaco_vi.qm</file>
+        <file alias="zh_CN">locale/metaaco_zh_CN.qm</file>
+        <file alias="zh_TW">locale/metaaco_zh_TW.qm</file>
+    </qresource>
+</RCC>

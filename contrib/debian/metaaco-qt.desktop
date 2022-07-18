@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Name=MetaACO Core
+Comment=MetaACO P2P Cryptocurrency
+Exec=metaaco-qt %u
+Terminal=false
+Type=Application
+Icon=metaaco128
+MimeType=x-scheme-handler/metaaco;
+Categories=Office;Finance;
+StartupWMClass=MetaACO-qt
+Name[en_US]=metaaco-qt.desktop

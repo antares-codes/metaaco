@@ -1,0 +1,157 @@
+
+## <summary>policy for metaaco</summary>
+
+
+########################################
+## <summary>
+##	Transition to metaaco.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`metaaco_domtrans',`
+	gen_require(`
+		type metaaco_t, metaaco_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, metaaco_exec_t, metaaco_t)
+')
+
+
+########################################
+## <summary>
+##	Execute metaaco server in the metaaco domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`metaaco_initrc_domtrans',`
+	gen_require(`
+		type metaaco_initrc_exec_t;
+	')
+
+	init_labeled_script_domtrans($1, metaaco_initrc_exec_t)
+')
+
+
+########################################
+## <summary>
+##	Search metaaco lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`metaaco_search_lib',`
+	gen_require(`
+		type metaaco_var_lib_t;
+	')
+
+	allow $1 metaaco_var_lib_t:dir search_dir_perms;
+	files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read metaaco lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`metaaco_read_lib_files',`
+	gen_require(`
+		type metaaco_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	read_files_pattern($1, metaaco_var_lib_t, metaaco_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage metaaco lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`metaaco_manage_lib_files',`
+	gen_require(`
+		type metaaco_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_files_pattern($1, metaaco_var_lib_t, metaaco_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage metaaco lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`metaaco_manage_lib_dirs',`
+	gen_require(`
+		type metaaco_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_dirs_pattern($1, metaaco_var_lib_t, metaaco_var_lib_t)
+')
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	a metaaco environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`metaaco_admin',`
+	gen_require(`
+		type metaaco_t;
+		type metaaco_initrc_exec_t;
+		type metaaco_var_lib_t;
+	')
+
+	allow $1 metaaco_t:process { ptrace signal_perms };
+	ps_process_pattern($1, metaaco_t)
+
+	metaaco_initrc_domtrans($1)
+	domain_system_change_exemption($1)
+	role_transition $2 metaaco_initrc_exec_t system_r;
+	allow $2 system_r;
+
+	files_search_var_lib($1)
+	admin_pattern($1, metaaco_var_lib_t)
+
+')
+

@@ -1,0 +1,81 @@
+policy_module(metaaco, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type metaaco_t;
+type metaaco_exec_t;
+init_daemon_domain(metaaco_t, metaaco_exec_t)
+
+permissive metaaco_t;
+
+type metaaco_initrc_exec_t;
+init_script_file(metaaco_initrc_exec_t)
+
+type metaaco_conf_t;
+files_type(metaaco_conf_t)
+
+type metaaco_var_lib_t;
+files_type(metaaco_var_lib_t)
+
+type metaaco_var_run_t;
+files_type(metaaco_var_run_t)
+
+type metaaco_port_t;
+corenet_port(metaaco_port_t)
+
+########################################
+#
+# metaaco local policy
+#
+allow metaaco_t self:process { fork };
+
+allow metaaco_t self:fifo_file rw_fifo_file_perms;
+allow metaaco_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(metaaco_t, metaaco_conf_t, metaaco_conf_t)
+manage_files_pattern(metaaco_t, metaaco_conf_t, metaaco_conf_t)
+
+manage_dirs_pattern(metaaco_t, metaaco_var_lib_t, metaaco_var_lib_t)
+manage_files_pattern(metaaco_t, metaaco_var_lib_t, metaaco_var_lib_t)
+files_var_lib_filetrans(metaaco_t, metaaco_var_lib_t, { dir file })
+
+manage_dirs_pattern(metaaco_t, metaaco_var_run_t, metaaco_var_run_t)
+manage_files_pattern(metaaco_t, metaaco_var_run_t, metaaco_var_run_t)
+
+sysnet_dns_name_resolve(metaaco_t)
+corenet_all_recvfrom_unlabeled(metaaco_t)
+
+allow metaaco_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(metaaco_t)
+corenet_tcp_sendrecv_generic_node(metaaco_t)
+corenet_tcp_sendrecv_all_ports(metaaco_t)
+corenet_tcp_bind_generic_node(metaaco_t)
+
+gen_require(`
+    type metaaco_port_t;
+')
+allow metaaco_t metaaco_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type metaaco_port_t;
+')
+allow metaaco_t metaaco_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(metaaco_t)
+
+files_read_etc_files(metaaco_t)
+
+miscfiles_read_localization(metaaco_t)
+
+sysnet_dns_name_resolve(metaaco_t)
+
+allow metaaco_t metaaco_exec_t:file execute_no_trans;
+allow metaaco_t self:process setsched;
+corecmd_exec_ls(metaaco_t)
+corenet_tcp_connect_http_port(metaaco_t)
+dev_read_urand(metaaco_t)
+fs_getattr_xattr_fs(metaaco_t)
+kernel_read_system_state(metaaco_t)
