@@ -232,13 +232,13 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "Do Not Compile Genesis not yet created";
+        const char* pszTimestamp = "Do Not Compile the source code until August 1st 2022 where the Genesis block will be made available.";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 1 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("047c73270db00e3605a425ec71e1c2f8c5e5c0a502e59073a747254ac69290b51b811303697cac4e75695e75fe3c009ac485f8b9cbaf21771e271904fdc963dd48") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("Do Not Compile the source code until August 1st 2022 where the Genesis block will be made available.") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
@@ -248,8 +248,8 @@ public:
         genesis.nNonce = 1222153;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000179c2edcadbffebb5d3940e6fe018d8905df41a73bbc9f6f350547ed684"));
-        assert(genesis.hashMerkleRoot == uint256("0xf595de3bd428bb0c3dcf1c6b6033ac4bf53b9b1bdf96949389edca20981da916"));
+        assert(hashGenesisBlock == uint256("Do Not Compile the source code until August 1st 2022 where the Genesis block will be made available."));
+        assert(genesis.hashMerkleRoot == uint256("Do Not Compile the source code until August 1st 2022 where the Genesis block will be made available."));
 
         //vSeeds.push_back(CDNSSeedData("seed1", "seed1.antares.codes"));
 		//vSeeds.push_back(CDNSSeedData("seed2", "seed2.antares.codes"));
