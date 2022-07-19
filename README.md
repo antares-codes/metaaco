@@ -1,3 +1,6 @@
+
+## Do Not Compile the source code until August 1st 2022 where the Genesis block will be made available.
+
 ![MetaACO Logo](https://fast.antarescodes.space/aco/maco400.png)
 =========================
 ### Links
